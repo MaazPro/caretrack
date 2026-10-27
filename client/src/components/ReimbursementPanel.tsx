@@ -68,7 +68,7 @@ export function ReimbursementPanel({ claim, role }: { claim: Claim; role: Role }
     <Descriptions column={1} size="small" className="reimbursement-details" items={[
       { key: 'amount', label: 'Approved amount', children: money(reimbursement.amountMinor, reimbursement.currency) },
       { key: 'address', label: 'Mock pickup address', children: reimbursement.pickupAddress },
-      ...(role === 'CUSTOMER' || !ready ? [{ key: 'code', label: 'Verification code', children: <Typography.Text copyable code>{reimbursement.voucherCode}</Typography.Text> }] : []),
+      { key: 'code', label: 'Verification code', children: <Typography.Text copyable code>{reimbursement.voucherCode}</Typography.Text> },
       { key: 'issued', label: 'Voucher issued', children: dayjs(reimbursement.issuedAt).format('D MMM YYYY, h:mm A') },
     ]} />
     <Button icon={<DownloadOutlined />} onClick={downloadVoucher}>Download pickup voucher (PDF)</Button>

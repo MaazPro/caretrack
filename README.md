@@ -70,10 +70,6 @@ npm run build
 
 Deploy `client/` to Vercel (Vite build command `npm run build`, output `dist`) and `server/` to Render (Node build `npm install && npm run build`, start `npm start`). Configure `VITE_API_BASE_URL` in Vercel as `https://YOUR-RENDER-HOST/api`; configure `CLIENT_URL` in Render as the exact Vercel origin. Add the MongoDB Atlas URI, JWT secret, and optional Gemini variables to Render. Seed the admin with a one-time Render shell or a local environment pointed at Atlas. See [deployment instructions](docs/deployment.md).
 
-## Screenshots
-
-Add screenshots after deployment: login, customer desktop, customer mobile, claim drawer, and admin review drawer.
-
 ## Limits and next steps
 
 Receipts are capped at 5 MB and stored in MongoDB for this proof of concept. Claim submission returns after persistence while Gemini analysis continues in the API process with a 45-second timeout. The client polls pending assessments. A process restart can interrupt in-flight analysis; an admin can retry a failed, unavailable, legacy, or stale pending assessment from the claim drawer. The reimbursement flow uses a fictional address and staff attestation; it sends no email or money. Authentication uses a one-day JWT in session storage; production hardening could move to HTTP-only cookies with refresh rotation. Search uses escaped, case-insensitive regex suitable for modest datasets; larger deployments should add dedicated search indexes. Future work could add object storage, email notifications, a warranty rule engine, richer analytics, and expanded audit logs.
